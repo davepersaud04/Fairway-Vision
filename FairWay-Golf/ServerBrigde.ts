@@ -17,6 +17,8 @@ export const useUpload = (sequence: number, run_id: string, imageUri: string, se
         type: 'image/jpeg',
       } as any);
       formData.append('run_id',run_id);
+      formData.append('sequence', sequence.toString());
+
 
       try {
         setIsLoading(true);
