@@ -1,33 +1,33 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useEffect, useState } from 'react';
+import React, { JSXElementConstructor, useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { uploadImage } from './ServerBrigde';
+import {usePrediction, useUpload} from './ServerBrigde';
 
 export default function App() { 
   return (
     <View style={styles.container}>
       <Text>Open up App.tsx to start working on your app!</Text>
       <StatusBar style="auto" />
-      <Profile />
+      <UploadScreen />
     </View>
   );
 }
 
-function Profile(){
-  const [response, sendImage] = useState<any|null>(null);
+function UploadScreen() {
+  const imageUri = '/Users/andrewfalberg/Fairway-Vision/FairWay-Golf/food.jpeg';
+  const sequence = 1;
+  const serverUrl = 'http://192.168.1.206:5001/upload';
 
-  useEffect(() => {
-    uploadImage('/Users/andrewfalberg/Fairway-Vision/FairWay-Golf/0C9E60E9-2B70-4A3B-A82B-74938BADCB45_4_5005_c.jpeg','http://192.168.1.206:5001/upload').then(sendImage);
-  }, []);
-  
+  const { status, error, isLoading } = useUpload(sequence,"0x67281", imageUri, serverUrl);
+
   return (
-    response && <View>
-      <Text>
-        {response.status}
-      </Text>
+    <View>
+      {isLoading && <Text>Uploading...</Text>}
+      {error && <Text>Error: {error.message}</Text>}
+      {!status && <Text>Upload Successful!</Text>}
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
