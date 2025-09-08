@@ -1,39 +1,44 @@
-import { StatusBar } from 'expo-status-bar';
 import React, { JSXElementConstructor, useEffect, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import {usePrediction, useUpload} from './ServerBrigde';
+import { NavigationContainer } from "@react-navigation/native"
+import MainStack from './src/navigation/MainStack';
 
-export default function App() { 
+export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-      <UploadScreen />
-    </View>
+    <NavigationContainer>
+      <MainStack />
+    </NavigationContainer>
   );
 }
 
-function UploadScreen() {
-  const imageUri = '/Users/andrewfalberg/Fairway-Vision/FairWay-Golf/food.jpeg';
-  const sequence = 1;
-  const serverUrl = 'http://192.168.1.206:5001/upload';
 
-  const { status, error, isLoading } = useUpload(sequence,"0x67281", imageUri, serverUrl);
 
-  return (
-    <View>
-      {isLoading && <Text>Uploading...</Text>}
-      {error && <Text>Error: {error.message}</Text>}
-      {!status && <Text>Upload Successful!</Text>}
-    </View>
-  );
-};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+// DELETE IF NOT LONGER NEEDED
+
+// import { StyleSheet, Text, View } from 'react-native';
+// import {usePrediction, useUpload} from './ServerBrigde';
+
+// function UploadScreen() {
+//   const imageUri = '/Users/andrewfalberg/Fairway-Vision/FairWay-Golf/food.jpeg';
+//   const sequence = 1;
+//   const serverUrl = 'http://107.20.221.237:5001/upload';
+
+//   const { status, error, isLoading } = useUpload(sequence,"0x67281", imageUri, serverUrl);
+
+//   return (
+//     <View>
+//       {isLoading && <Text>Uploading...</Text>}
+//       {error && <Text>Error: {error.message}</Text>}
+//       {!status && <Text>Upload Successful!</Text>}
+//     </View>
+//   );
+// };
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: '#fff',
+//     alignItems: 'center',
+//     justifyContent: 'center',
+//   },
+// });
