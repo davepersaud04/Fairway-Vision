@@ -4,7 +4,8 @@ export enum ScreenName {
     InitialWelcome = "InitialWelcome",
     ConnBlueTooth = "ConnBlueTooth",
     ConnWifi = "ConnWifi",
-    ConnHotSpot = "ConnHotSpot"
+    ConnHotSpot = "ConnHotSpot",
+    ConnHotSpotP2 = "ConnHotSpotP2"
 }
 
 export default ScreenName;

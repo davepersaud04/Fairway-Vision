@@ -17,14 +17,17 @@ type InitialWelcomeParams = {
 };
 
 type ConnBlueToothParams = {};
-type ConnHotSpotParams = {};
 type ConnWifiParams = {};
+type ConnHotSpotParams = {};
+type ConnHotSpotP2Params = {};
+
 
 export type RootStackParamList = {
     BootUp: BootUpParams,
     ConfigureSetup: ConfigureSetupParams,
     InitialWelcome: InitialWelcomeParams,
     ConnBlueTooth: ConnBlueToothParams,
-    ConnHotSpot: ConnHotSpotParams,
     ConnWifi: ConnWifiParams
+    ConnHotSpot: ConnHotSpotParams,
+    ConnHotSpotP2: ConnHotSpotP2Params
 }

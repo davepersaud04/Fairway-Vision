@@ -6,94 +6,63 @@ import { RootStackParamList } from '../navigation/RootStackParamList';
 
 type Props = NativeStackScreenProps<RootStackParamList, ScreenName.ConfigureSetup>
 
-
 const ConfigureSetup = ({ route, navigation }: Props) => {
-
-    const openSettings = () => {
-        if (Platform.OS === 'ios') {
-            Linking.openURL('App-Prefs:'); // Redirects to iOS settings
-        } else {
-            Linking.openSettings(); // Opens Android settings
-        }
-    };
-
-    const handleContinue = () => {
-        navigation.navigate(ScreenName.InitialWelcome,
-            {
-                title: "Welcome Screen",
-                userID: "0101"
-            }
-        );
-    };
-
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Please check if your Mobile WIFI is ON</Text>
-            <Text style={styles.subtitle}>
-                To continue, connect your device to FairWay Golf Glasses Wifi.
-                WIFI NAME: FairWayGlasses-XXXXX
-            </Text>
+            <Text style={styles.title}>Choose your preferred connection method:</Text>
 
-            <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.settingsButton} onPress={openSettings}>
-                    <Text style={styles.buttonText}>Go to Settings</Text>
-                </TouchableOpacity>
+            <TouchableOpacity
+                style={styles.button}
+                onPress={() => navigation.navigate(ScreenName.ConnWifi, {})}
+            >
+                <Text style={styles.buttonText}>Connect via Wi-Fi</Text>
+            </TouchableOpacity>
 
-                <TouchableOpacity style={styles.continueButton} onPress={handleContinue}>
-                    <Text style={styles.buttonText}>Continue</Text>
-                </TouchableOpacity>
-            </View>
+            <TouchableOpacity
+                style={styles.button}
+                onPress={() => navigation.navigate(ScreenName.ConnHotSpot, {})}
+            >
+                <Text style={styles.buttonText}>Connect via Hotspot</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+                style={styles.button}
+                onPress={() => navigation.navigate(ScreenName.ConnBlueTooth, {})}
+            >
+                <Text style={styles.buttonText}>Connect via Bluetooth</Text>
+            </TouchableOpacity>
         </View>
     );
 };
 
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
+        justifyContent: "center",
+        alignItems: "center",
         padding: 20,
-        backgroundColor: '#f9f9f9',
+        backgroundColor: "#fff",
     },
     title: {
-        fontSize: 22,
-        fontWeight: 'bold',
-        textAlign: 'center',
-        marginBottom: 10,
+        fontSize: 18,
+        fontWeight: "600",
+        marginBottom: 20,
+        textAlign: "center",
     },
-    subtitle: {
-        fontSize: 16,
-        textAlign: 'center',
-        marginBottom: 40,
-        color: '#555',
-    },
-    buttonContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        width: '100%',
-    },
-    settingsButton: {
-        flex: 1,
-        backgroundColor: '#ff6b6b',
+    button: {
+        width: "80%",
         padding: 15,
-        marginRight: 10,
-        borderRadius: 8,
-        alignItems: 'center',
-    },
-    continueButton: {
-        flex: 1,
-        backgroundColor: '#4caf50',
-        padding: 15,
-        marginLeft: 10,
-        borderRadius: 8,
-        alignItems: 'center',
+        backgroundColor: "#4F46E5",
+        borderRadius: 10,
+        marginVertical: 10,
+        alignItems: "center",
     },
     buttonText: {
-        color: '#fff',
-        fontWeight: 'bold',
+        color: "#fff",
         fontSize: 16,
+        fontWeight: "500",
     },
 });
+
 
 export default ConfigureSetup;

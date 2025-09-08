@@ -9,6 +9,7 @@ import ScreenName from '../constant/ScreenName';
 import ConnBlueTooth from '../screens/connections_screens/ConnBlueTooth';
 import ConnHotSpot from '../screens/connections_screens/ConnHotSpot';
 import ConnWifi from '../screens/connections_screens/ConnWifi';
+import ConnHotSpotP2 from '../screens/connections_screens/ConnHotSpotP2';
 
 
 const MainStack = () => {
@@ -51,6 +52,10 @@ const MainStack = () => {
             <Stack.Screen
                 name={ScreenName.ConnWifi}
                 component={ConnWifi}
+            />
+            <Stack.Screen
+                name={ScreenName.ConnHotSpotP2}
+                component={ConnHotSpotP2}
             />
         </Stack.Navigator>
     )
