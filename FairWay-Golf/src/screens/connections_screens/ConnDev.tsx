@@ -1,31 +1,28 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Linking, Platform } from 'react-native';
 import ScreenName from '../../constant/ScreenName';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../navigation/RootStackParamList';
-import { Connection, ConnectionMethod, ConnectionType } from '../../constant/apiTypes';
+import { Connection, ConnectionMethod, ConnectionType, DevConnection } from '../../constant/apiTypes';
 import { testConnection, useConnect } from '../../api/glassesApi';
 
-type Props = NativeStackScreenProps<RootStackParamList, ScreenName.ConnWifi>
+type Props = NativeStackScreenProps<RootStackParamList, ScreenName.ConnDev>
 
-
-const ConnWifi = ({ route, navigation }: Props) => {
-    const [buttonPressed, setButtonPressed] = useState(false);
-    const [conn, setConn] = useState<Connection<ConnectionType>>({ method: null, connectionInfo: null });
+const ConnDev = ({ route, navigation }: Props) => {
+    const [devConn, setDevConn] = useState<Connection<ConnectionType>>({ method: null, connectionInfo: null });
     const isFirstRender = useRef(true)
-
     useEffect(() => {
         if (isFirstRender.current) {
             isFirstRender.current = false;
             return;
         }
-        const msg = testConnection(conn);
+        const msg = testConnection(devConn);
         msg.then((message) => {
             if (message !== null) {
                 console.log("Succesfull Connect");
                 navigation.navigate(ScreenName.InitialWelcome,
                     {
-                        conn: conn,
+                        conn: devConn,
                         title: "Welcome Screen",
                         userID: "0101",
                     }
@@ -33,36 +30,36 @@ const ConnWifi = ({ route, navigation }: Props) => {
             } else {
                 return () => { console.log("ERROR: Bad Connection") }
             }
-        })
-    }, [conn]);
-    const openSettings = () => {
-        if (Platform.OS === 'ios') {
-            Linking.openURL('App-Prefs:'); // Redirects to iOS settings
-        } else {
-            Linking.openSettings(); // Opens Android settings
-        }
+        });
+    }, [devConn]);
+    const DevConn0Andrew = () => {
+        setDevConn(useConnect(ConnectionMethod.Dev).connection);
     };
 
-    const handleContinue = () => {
-        setButtonPressed(true);
-        setConn(useConnect(ConnectionMethod.Wifi).connection);
+    const DevConn1Dave = () => {
+        // navigation.navigate(ScreenName.InitialWelcome,
+        //     {
+        //         title: "Welcome Screen",
+        //         userID: "0101",
+        //         conn: null,
+        //     }
+        // );
     };
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Please check if your Mobile WIFI is ON</Text>
+            <Text style={styles.title}>Connecting with preconfigured dev connections</Text>
             <Text style={styles.subtitle}>
-                To continue, connect your device to FairWay Golf Glasses Wifi.
-                WIFI NAME: FairWayGlasses-XXXXX
+                Select Preset bellow to continue:
             </Text>
 
             <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.settingsButton} onPress={openSettings}>
-                    <Text style={styles.buttonText}>Go to Settings</Text>
+                <TouchableOpacity style={styles.settingsButton} onPress={DevConn0Andrew}>
+                    <Text style={styles.buttonText}>DevConn0</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.continueButton} onPress={handleContinue}>
-                    <Text style={styles.buttonText}>Continue</Text>
+                <TouchableOpacity style={styles.continueButton} onPress={DevConn1Dave}>
+                    <Text style={styles.buttonText}>DevConn1</Text>
                 </TouchableOpacity>
             </View>
         </View>
@@ -118,4 +115,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default ConnWifi;
+export default ConnDev;

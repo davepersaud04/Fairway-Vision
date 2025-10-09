@@ -1,4 +1,4 @@
-import ConnHotSpot from "../screens/connections_screens/ConnHotSpot";
+import { Connection, ConnectionType } from "../constant/apiTypes";
 
 type BootUpParams = {
     title: string,
@@ -12,14 +12,20 @@ type ConfigureSetupParams = {
 };
 
 type InitialWelcomeParams = {
-    title: string
-    userID: string
+    conn: Connection<ConnectionType | null> | null,
+    title: string,
+    userID: string,
+};
+type RecordingParams = {
+    conn: Connection<ConnectionType | null> | null,
 };
 
 type ConnBlueToothParams = {};
 type ConnWifiParams = {};
 type ConnHotSpotParams = {};
 type ConnHotSpotP2Params = {};
+type ConnDevParams = {};
+
 
 
 export type RootStackParamList = {
@@ -29,5 +35,7 @@ export type RootStackParamList = {
     ConnBlueTooth: ConnBlueToothParams,
     ConnWifi: ConnWifiParams
     ConnHotSpot: ConnHotSpotParams,
-    ConnHotSpotP2: ConnHotSpotP2Params
+    ConnHotSpotP2: ConnHotSpotP2Params,
+    ConnDev: ConnDevParams,
+    Recording: RecordingParams,
 }

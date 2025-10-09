@@ -10,6 +10,8 @@ import ConnBlueTooth from '../screens/connections_screens/ConnBlueTooth';
 import ConnHotSpot from '../screens/connections_screens/ConnHotSpot';
 import ConnWifi from '../screens/connections_screens/ConnWifi';
 import ConnHotSpotP2 from '../screens/connections_screens/ConnHotSpotP2';
+import Recording from '../screens/Recording';
+import ConnDev from '../screens/connections_screens/ConnDev';
 
 
 const MainStack = () => {
@@ -56,6 +58,14 @@ const MainStack = () => {
             <Stack.Screen
                 name={ScreenName.ConnHotSpotP2}
                 component={ConnHotSpotP2}
+            />
+            <Stack.Screen
+                name={ScreenName.ConnDev}
+                component={ConnDev}
+            />
+            <Stack.Screen
+                name={ScreenName.Recording}
+                component={Recording}
             />
         </Stack.Navigator>
     )

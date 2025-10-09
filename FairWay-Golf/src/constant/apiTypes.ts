@@ -2,9 +2,10 @@ export enum ConnectionMethod {
     Wifi,
     HotSpot,
     Bluetooth,
+    Dev,
 };
 
-export type ConnectionType = WifiConnection | HotSpotConnection | BlueToothConnection;
+export type ConnectionType = WifiConnection | HotSpotConnection | BlueToothConnection | DevConnection;
 
 export interface Status { };
 
@@ -14,7 +15,7 @@ export interface WifiConnection {
     SSID: string,
     port: string,
     url: string,
-    status: Status,
+    status: Status | boolean,
 };
 
 //Interface for HotspotConnection
@@ -22,17 +23,22 @@ export interface HotSpotConnection {
     ssdpResponse: string,
     port: string,
     url: string,
-    status: Status,
+    status: Status | boolean,
 
 };
 
 export interface BlueToothConnection {
     MACAddress: string,
-    status: Status,
-
+    status: Status | boolean,
 };
+
+export interface DevConnection {
+    port: string,
+    url: string,
+    status: Status | boolean,
+}
 
 export interface Connection<T extends ConnectionType | null> {
     method: ConnectionMethod | null,
-    connectionInfo: T,
+    connectionInfo: T | null,
 };

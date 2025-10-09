@@ -31,6 +31,14 @@ const ConfigureSetup = ({ route, navigation }: Props) => {
             >
                 <Text style={styles.buttonText}>Connect via Bluetooth</Text>
             </TouchableOpacity>
+
+            <TouchableOpacity
+                style={styles.button}
+                onPress={() => navigation.navigate(ScreenName.ConnDev, {})}
+            >
+                <Text style={styles.buttonText}>Connect via DevConn</Text>
+            </TouchableOpacity>
+
         </View>
     );
 };
