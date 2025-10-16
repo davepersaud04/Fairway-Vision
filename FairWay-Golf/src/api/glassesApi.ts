@@ -27,6 +27,9 @@ export const testConnection = async (connection: Connection<ConnectionType> | nu
                 message = data.message;
             })
             .catch((err) => { message = `Connection failed: ${err.message}` });
+    } else {
+        console.log("Error in glassesApi Connection Type not configured");
+        return null;
     }
     return message;
 };

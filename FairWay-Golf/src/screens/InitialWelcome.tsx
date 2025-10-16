@@ -8,8 +8,11 @@ import BottomNavBar from './components/GlobalComponents/BottomNavBar';
 type Props = NativeStackScreenProps<RootStackParamList, ScreenName.InitialWelcome>
 
 const InitialWelcome = ({ route, navigation }: Props) => {
+  const currentConnection = route.params.conn;
   const onRecordRoute = () => {
-    navigation.navigate(ScreenName.Recording, {});
+    navigation.navigate(ScreenName.Recording, {
+      conn: currentConnection
+    });
   }
   return (
     <View style={styles.container}>

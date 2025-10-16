@@ -1,16 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { View, Image, StyleSheet } from "react-native";
 import { io, Socket } from "socket.io-client";
+import { Connection, ConnectionType, DevConnection, WifiConnection } from "../../../constant/apiTypes";
 
 interface VideoFrameMessage {
     data: string; // base64 JPEG data
 }
 
-const SERVER_URL = "http://192.168.2.2:5000";
+interface Recording_Props {
+    SERVER_URL: string,
+    isRecording: boolean
+}
+// const SERVER_URL = "http://192.168.2.2:5000";
 
-const VideoStream: React.FC = () => {
+const VideoStream = ({ SERVER_URL, isRecording }: Recording_Props) => {
     const [frame, setFrame] = useState<string | null>(null);
-
+    console.log(isRecording);
     useEffect(() => {
         const socket: Socket = io(SERVER_URL, {
             transports: ["websocket"],
@@ -32,9 +37,8 @@ const VideoStream: React.FC = () => {
             socket.disconnect();
         };
     }, []);
-
     return (
-        <View style={styles.container}>
+        <View>
             {frame && <Image source={{ uri: frame }} style={styles.image} />}
         </View>
     );
@@ -43,15 +47,9 @@ const VideoStream: React.FC = () => {
 export default VideoStream;
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "#000",
-    },
     image: {
-        width: 300,
-        height: 300,
+        width: 400,
+        height: 400,
         resizeMode: "contain",
     },
 });
