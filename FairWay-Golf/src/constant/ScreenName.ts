@@ -8,7 +8,8 @@ export enum ScreenName {
     ConnHotSpotP2 = "ConnHotSpotP2",
     ConnDev = "ConnDev",
     Recording = "Recording",
-
+    Previous = "Previous",
+    FramesView = "FramesView"
 }
 
 export default ScreenName;

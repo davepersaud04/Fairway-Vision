@@ -11,7 +11,6 @@ type Props = NativeStackScreenProps<RootStackParamList, ScreenName.Recording>
 
 
 export default function Recording({ route, navigation }: Props) {
-    const [isRecording, setRecordingStatus] = useState(false);
     const [buttonString, setButtonString] = useState("Record");
     const conn = route.params.conn
     console.log(conn);
@@ -27,27 +26,12 @@ export default function Recording({ route, navigation }: Props) {
         console.log('connection Method not setup for Recording');
     }
 
-
-    const startRecord = () => {
-        if (isRecording === true) {
-            setRecordingStatus(false);
-            setButtonString("Record")
-        } else {
-            setRecordingStatus(true);
-            setButtonString("STOP");
-        }
-    };
-
     return (
         <View style={styles.container}>
             <VideoStream
                 SERVER_URL={SERVER_URL}
-                isRecording={isRecording}
             />
             <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.recordButton} onPress={startRecord}>
-                    <Text style={styles.buttonText}>{buttonString}</Text>
-                </TouchableOpacity>
             </View>
             <BottomNavBar />
         </View>

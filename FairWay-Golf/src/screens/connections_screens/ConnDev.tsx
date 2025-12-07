@@ -37,13 +37,13 @@ const ConnDev = ({ route, navigation }: Props) => {
     };
 
     const DevConn1Dave = () => {
-        // navigation.navigate(ScreenName.InitialWelcome,
-        //     {
-        //         title: "Welcome Screen",
-        //         userID: "0101",
-        //         conn: null,
-        //     }
-        // );
+        navigation.navigate(ScreenName.InitialWelcome,
+            {
+                title: "Welcome Screen",
+                userID: "0101",
+                conn: null,
+            }
+        );
     };
 
     return (

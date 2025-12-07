@@ -12,6 +12,8 @@ import ConnWifi from '../screens/connections_screens/ConnWifi';
 import ConnHotSpotP2 from '../screens/connections_screens/ConnHotSpotP2';
 import Recording from '../screens/Recording';
 import ConnDev from '../screens/connections_screens/ConnDev';
+import Previous from '../screens/Previous';
+import FramesView from '../screens/FramesView';
 
 
 const MainStack = () => {
@@ -66,6 +68,20 @@ const MainStack = () => {
             <Stack.Screen
                 name={ScreenName.Recording}
                 component={Recording}
+            />
+            <Stack.Screen
+                name={ScreenName.Previous}
+                component={Previous}
+            />
+            <Stack.Screen
+                name={ScreenName.FramesView}
+                component={FramesView}
+                initialParams={{
+                    recordDir: {
+                        uri: "",
+                        contents: [],
+                    }
+                }}
             />
         </Stack.Navigator>
     )

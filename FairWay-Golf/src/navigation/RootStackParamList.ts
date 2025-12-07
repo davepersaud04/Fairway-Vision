@@ -1,3 +1,5 @@
+import { Directory } from "expo-file-system";
+import { appDirectroy } from "../../GolfFileSystem";
 import { Connection, ConnectionType } from "../constant/apiTypes";
 
 type BootUpParams = {
@@ -19,12 +21,16 @@ type InitialWelcomeParams = {
 type RecordingParams = {
     conn: Connection<ConnectionType | null> | null,
 };
-
+type PreviousParams = {};
+type FramesViewParams = {
+    recordDirName: string
+}
 type ConnBlueToothParams = {};
 type ConnWifiParams = {};
 type ConnHotSpotParams = {};
 type ConnHotSpotP2Params = {};
 type ConnDevParams = {};
+
 
 
 
@@ -38,4 +44,6 @@ export type RootStackParamList = {
     ConnHotSpotP2: ConnHotSpotP2Params,
     ConnDev: ConnDevParams,
     Recording: RecordingParams,
+    Previous: PreviousParams,
+    FramesView: FramesViewParams
 }

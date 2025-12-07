@@ -1,8 +1,10 @@
 import React, { JSXElementConstructor, useEffect, useState } from 'react';
 import { NavigationContainer } from "@react-navigation/native"
 import MainStack from './src/navigation/MainStack';
+import { initializeFileSystem } from './GolfFileSystem';
 
 export default function App() {
+  initializeFileSystem();
   return (
     <NavigationContainer>
       <MainStack />
